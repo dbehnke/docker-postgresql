@@ -16,13 +16,13 @@ Dockerfile to build a PostgreSQL container image which can be linked to other co
 Pull the latest version of the image from the docker index. This is the recommended method of installation as it is easier to update image in the future. These builds are performed by the **Docker Trusted Build** service.
 
 ```bash
-docker pull sameersbn/postgresql:latest
+docker pull jgeiger/postgresql:latest
 ```
 
 Alternately you can build the image yourself.
 
 ```bash
-git clone https://github.com/sameersbn/docker-postgresql.git
+git clone https://github.com/jgeiger/docker-postgresql.git
 cd docker-postgresql
 docker build -t="$USER/postgresql" .
 ```
@@ -31,7 +31,7 @@ docker build -t="$USER/postgresql" .
 Run the postgresql image
 
 ```bash
-docker run -name postgresql -d sameersbn/postgresql:latest
+docker run -name postgresql -d jgeiger/postgresql:latest
 POSTGRESQL_IP=$(docker inspect postgresql | grep IPAddres | awk -F'"' '{print $4}')
 ```
 
@@ -66,7 +66,7 @@ For data persistence a volume should be mounted at /var/lib/postgresql.
 ```bash
 mkdir /opt/postgresql/data
 docker run -name postgresql -d \
-  -v /opt/postgresql/data:/var/lib/postgresql sameersbn/postgresql:latest
+  -v /opt/postgresql/data:/var/lib/postgresql jgeiger/postgresql:latest
 ```
 
 This will make sure that the data stored in the database is not lost when the image is stopped and started again.
@@ -101,14 +101,14 @@ docker stop postgresql
 - **Step 2**: Update the docker image.
 
 ```bash
-docker pull sameersbn/postgresql:latest
+docker pull jgeiger/postgresql:latest
 ```
 
 - **Step 3**: Start the image
 
 ```bash
-docker run -name postgresql -d [OPTIONS] sameersbn/postgresql:latest
+docker run -name postgresql -d [OPTIONS] jgeiger/postgresql:latest
 ```
 
 # Issues
-Please report issues [here](https://github.com/sameersbn/docker-postgresql/issues)
+Please report issues [here](https://github.com/jgeiger/docker-postgresql/issues)

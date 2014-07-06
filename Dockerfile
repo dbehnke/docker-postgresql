@@ -1,10 +1,10 @@
-FROM sameersbn/ubuntu:12.04.20140628
-MAINTAINER sameer@damagehead.com
+FROM jgeiger/ubuntu:latest
+MAINTAINER jgeiger@gmail.com
 
 RUN apt-get update && \
-		apt-get install -y postgresql postgresql-client && \
-		rm -rf /var/lib/postgresql &&  \
-		apt-get clean # 20140525
+  apt-get -qq -y install pwgen postgresql-9.3 postgresql-client-9.3 && \
+  rm -rf /var/lib/postgresql &&  \
+  apt-get clean
 
 ADD start /start
 RUN chmod 755 /start
